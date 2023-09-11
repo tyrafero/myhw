@@ -3,6 +3,8 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import Group, Permission
 from django.utils.crypto import get_random_string
 
+# from django.contrib.auth import get_user_model
+# User = get_user_model()
 
 class User(AbstractUser):
     ROLES = (
@@ -10,12 +12,13 @@ class User(AbstractUser):
         ('AC', 'Assignment Client'),
         ('AD', 'Assignment Doer'),
     )
-    role = models.CharField(max_length=2, choices=ROLES)
+    # role = models.CharField(max_length=2, choices=ROLES)
     name = models.CharField(max_length=255)
-    contact_number = models.CharField(max_length=20, unique=True)
-    address = models.TextField()
-    ratings = models.PositiveIntegerField(default=0)
-    nickname = models.CharField(max_length=255, unique=True)
+    email = models.EmailField(max_length=255)
+    # contact_number = models.CharField(max_length=20, unique=True)
+    # address = models.TextField()
+    # ratings = models.PositiveIntegerField(default=0)
+    nickname = models.CharField(max_length=255, unique=True, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         if not self.nickname:
