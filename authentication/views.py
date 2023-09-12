@@ -1,6 +1,3 @@
-from django.shortcuts import render
-
-# Create your views here.
 from django.shortcuts import render, redirect
 from domain.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -13,14 +10,14 @@ class SignupView(View):
         return render(request, 'signup.html')
     
     def post(self, request):
-        nickname = request.POST['username']
+        username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
 
-        if User.objects.filter(username=nickname).exists():
+        if User.objects.filter(username=username).exists():
             return render(request, 'signup.html', {'error': 'Username already exists'})
 
-        user = User.objects.create_user(username=nickname, email=email, password=password)
+        user = User.objects.create_user(username=username, email=email, password=password)
         login(request, user)
         return redirect('dashboard')
 
