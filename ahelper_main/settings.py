@@ -20,12 +20,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-m8$2ab%4@a6ab6a-x84yxev=ccxn_bncm#qul)ascov9f@h0!+'
+SECRET_KEY = 'Flg3eLazSoz7SDyhVAXaMfnRTHtSAEcCpbWSPWpeMVoQuZVtzK0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+CSRF_TRUSTED_ORIGINS = ["https://localhost:8000"]
 
 
 # Application definition
@@ -37,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'rest_framework',
     'authentication',
     'domain',
@@ -115,6 +118,9 @@ USE_I18N = True
 
 USE_TZ = True
 
+SITE_ID = 1
+
+ADMIN_URL = "supersecret/"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -127,3 +133,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'domain.User'
+
+CORS_URLS_REGEX = r"^api/.*$"

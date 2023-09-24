@@ -5,7 +5,7 @@ from .models import User, Assignment, Bid, Order, Review, Message
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'role', 'name', 'contact_number', 'address', 'ratings', 'nickname']
+        fields = ['id', 'username', 'email', 'name','nickname']
 
 
 class AssignmentSerializer(serializers.ModelSerializer):
